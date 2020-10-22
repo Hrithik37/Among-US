@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     public float runSpeed;
+
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator=GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -24,5 +26,7 @@ public class PlayerMovementController : MonoBehaviour
 
         float speed= runSpeed*inputDir.magnitude;
         transform.Translate(transform.forward*speed*Time.deltaTime , Space.World);
+
+        animator.SetFloat("isRunning",inputDir.magnitude);
     }
 }
