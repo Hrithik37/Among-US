@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    public float runSpeed;
+   public float runSpeed;
+   public CharacterController controller;
 
     Animator animator;
     // Start is called before the first frame update
@@ -16,17 +17,11 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 input= new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
-        Vector2 inputDir=input.normalized;
-
-        if(inputDir!=Vector2.zero)
-        {
-            transform.eulerAngles=Vector3.up*Mathf.Atan2(inputDir.x,inputDir.y)*Mathf.Rad2Deg;
-        }
-
-        float speed= runSpeed*inputDir.magnitude;
-        transform.Translate(transform.forward*speed*Time.deltaTime , Space.World);
-
-        animator.SetFloat("isRunning",inputDir.magnitude);
+       // float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+       // Vector3 move= transform.right*x + transform.forward*z;
+        Vector3 move= transform.forward*z;
+        controller.Move(move*runSpeed*Time.deltaTime);
+        animator.SetFloat("isRunning",Mathf.Abs(z));  
     }
 }
