@@ -25,7 +25,7 @@ public class FirstPerson : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity* Time.deltaTime;
         xRotation += mouseY*(inverted_y?1:-1);
-        xRotation = Mathf.Clamp(xRotation,-50f,50f);
+        xRotation = Mathf.Clamp(xRotation,-45f,50f);
 
         yRotation-=mouseX*(inverted_y?1:-1);
         Vector3 temp=offset;
